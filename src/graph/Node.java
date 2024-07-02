@@ -1,67 +1,28 @@
-package graph;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.awt.*;
 
+    public class Node {
+        private Point point;
+        private int radius = 10;
 
-public class Node {
-    private final int id;
-    private final List<Edge> adjacentEdges;
-    Node(int id){
-        this.id = id;
-        adjacentEdges = new ArrayList<Edge>();
-    };
-
-    public int getId() {
-        return id;
-    }
-
-    void addEdge(Edge newEdge){
-        adjacentEdges.add(newEdge);
-        newEdge.getAdjacentNode(this).adjacentEdges.add(newEdge);
-    }
-
-    private Edge findEdge(int edgeId){
-        for(Edge currentEdge: adjacentEdges){
-            if(currentEdge.getId() == edgeId){
-                return currentEdge;
-            }
+        public Node(int x, int y) {
+            this.point = new Point(x, y);
         }
-        return null;
-    }
 
-    void deleteEdge(int edgeId){
-        Edge currentEdge = findEdge(edgeId);
-        if(currentEdge != null){
-            currentEdge.getFirstNode().adjacentEdges.remove(currentEdge);
-            currentEdge.getSecondNode().adjacentEdges.remove(currentEdge);
+        public Point getPoint() {
+            return point;
+        }
+
+        public int getRadius() {
+            return radius;
+        }
+
+        public void setPoint(int x, int y) {
+            this.point.setLocation(x, y);
+        }
+
+        public boolean contains(int x, int y) {
+            return point.distance(x, y) <= radius;
         }
     }
 
-    List<Edge> getAdjacentEdges() {
-        return adjacentEdges;
-    }
-
-    @Override
-    public boolean equals(Object obj){
-        if(this == obj){
-            return true;
-        }
-        if(obj instanceof Node){
-            if (this.id == ((Node)obj).id){
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public String toString(){
-        StringBuilder builder = new StringBuilder();
-        builder.append("NodeId:" + id + ",  Edges:\n");
-        for (Edge edge : adjacentEdges) {
-            builder.append("\t" + edge + "\n");
-        }
-        return builder.toString();
-    }
-}
