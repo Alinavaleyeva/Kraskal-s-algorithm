@@ -1,4 +1,4 @@
-package graph;
+package src.graph;
 
 public class EdgeData {
     private final int id;
