@@ -1,6 +1,6 @@
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
-import com.intellij.uiDesigner.core.Spacer;
+
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -23,7 +23,7 @@ public class prototip extends JDialog {
     private JButton saveGraphButton;
     private JButton deleteNodeButton;
     private JPanel Graph;
-    GraphPanel gp;
+
 
     public prototip() {
         $$$setupUI$$$();
